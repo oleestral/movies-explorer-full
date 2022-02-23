@@ -12,7 +12,6 @@ import auth from "../../utils/Auth";
 import { CurrentUserContext } from "../../context/CurrentUserContext";
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Movies from '../Movies/Movies';
-import SavedMovies from '../SavedMovies/SavedMovies';
 import apiMain from '../../utils/MainApi';
 
 function App() {
@@ -29,8 +28,10 @@ function App() {
     auth
       .signUp(email, password, name)
       .then((item) => {
-        localStorage.setItem("jwt", item.token);
-        setIsLogged(true)
+        if(item) {
+          handleSignIn(item)
+          setIsLogged(true)
+        }
       })
       .catch((err) => {
         setIsError(true)
@@ -47,8 +48,10 @@ function App() {
     auth
     .signIn(data)
     .then((item) => {
-      localStorage.setItem("jwt", item.token);
-      setIsLogged(true)
+      if(item) {
+        localStorage.setItem("jwt", item.token);
+        setIsLogged(true)
+      }
     })
     .catch((err) => {
       setIsError(true)
@@ -62,8 +65,6 @@ function App() {
         setErrorText("При авторизации произошла ошибка")
       }
       
-    }).finally(() => {
-      console.log(isLogged)
     })
   }
   ////logout
@@ -133,7 +134,6 @@ function App() {
             />
             <ProtectedRoute
               path="/saved-movies"
-              // component={SavedMovies}
               component={Movies}
             />
             <ProtectedRoute

@@ -1,12 +1,7 @@
 import React from "react";
 import { Link, withRouter, useLocation } from "react-router-dom";
-import { useFormWithValidation } from '../Validation/Validation'
-import { useHistory } from "react-router-dom";
 function Form(props) {
     const location = useLocation();
-    const history = useHistory();
-    const { values, handleChange, resetFrom, errors, isValid } = useFormWithValidation();
-    const isDisabled = !isValid;
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
     const [name, setName] = React.useState("");

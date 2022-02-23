@@ -3,7 +3,6 @@ import React from 'react';
 function MoviesCard(props) {
     const [time, setTime] = React.useState('')
     const [click, setClick] = React.useState(false)
-
     const buttonStyle = `movies-card__btn movies-card__circle ${click ? 'movies-card__circle_active' : 'movies-card__circle_notactive'}`
 
     //convert duration

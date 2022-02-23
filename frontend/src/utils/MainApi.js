@@ -75,6 +75,6 @@ class MainApi {
     }
 }
 const apiMain = new MainApi({
-    address: "http://localhost:3000",
+    address: "https://api.oleestral.diploma.nomoredomains.rocks",
   });
   export default apiMain;

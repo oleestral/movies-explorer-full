@@ -36,7 +36,7 @@ class Auth {
       }).then(this._getResponseData);
     }
   }
-  const auth = new Auth({ BASE_URL: "http://localhost:3000",
+  const auth = new Auth({ BASE_URL: "https://api.oleestral.diploma.nomoredomains.rocks",
   headers: {
     "Content-Type": "application/json",
     "Accept": "application/json"

@@ -27,7 +27,7 @@ function Movies() {
 
     const [isVisibleButton, setIsVisibleButton] = React.useState(false)
     const [isVisibleButtonSaveCase, setIsVisibleButtonSaveCase] = React.useState(false)
-
+ 
     const [screenSize, getDimension] = React.useState({
         dynamicWidth: window.innerWidth
       });
@@ -84,6 +84,7 @@ function Movies() {
             }
             
         }
+
     },[moviesQuantity, resultSavedMovies])
 
     ////add more movies
@@ -171,6 +172,7 @@ function Movies() {
     }
     ////search movie
     function handleMovieSearch(value) {
+        localStorage.setItem('keyWord', value)
         setIsPreloader(true)
         setResultMovies(movies.filter((item) => {
             return (item.nameRU.toLowerCase().includes(value) ?? item.nameEN.toLowerCase().includes(value))
@@ -183,6 +185,7 @@ function Movies() {
     }
     ////filter movie
     function handleMovieFilter(value) {
+        localStorage.setItem('filterCheckbox', value)
         setFoundMovie(resultMovies)
         setFoundSavedMovies(resultSavedMovies)
         if(value) {
@@ -212,7 +215,13 @@ function Movies() {
             return setDisplayedMovies([]) 
         }
     },[resultMovies])
-
+    //// show result saved movies
+    React.useEffect(() => {
+        if(JSON.parse(localStorage.getItem('resultSavedMovies')).length === 0) {
+            return setDisplayedSavedMovies([]) 
+        }
+    },[resultSavedMovies])
+    //
     return(
         <section className="movies">
             <SearchForm onSearch={handleMovieSearch} onFilter={handleMovieFilter}/>

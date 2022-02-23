@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import Logo from '../Logo/Logo';
 import HeaderNotAuthed from '../HeaderNotAuthed/HeaderNotAuthed';
 import HeaderAuthed from '../HeaderAuthed/HeaderAuthed';
